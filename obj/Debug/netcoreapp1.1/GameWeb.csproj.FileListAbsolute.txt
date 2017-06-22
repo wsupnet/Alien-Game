@@ -1,0 +1,8 @@
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/bin/Debug/netcoreapp1.1/GameWeb.deps.json
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/bin/Debug/netcoreapp1.1/GameWeb.runtimeconfig.json
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/bin/Debug/netcoreapp1.1/GameWeb.runtimeconfig.dev.json
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/bin/Debug/netcoreapp1.1/GameWeb.dll
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/bin/Debug/netcoreapp1.1/GameWeb.pdb
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/obj/Debug/netcoreapp1.1/GameWeb.AssemblyInfo.cs
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/obj/Debug/netcoreapp1.1/GameWeb.dll
+/Users/wesleys/Desktop/SACA-intermediate/GameWeb/obj/Debug/netcoreapp1.1/GameWeb.pdb
