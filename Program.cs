@@ -12,6 +12,7 @@ namespace GameWeb
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .UseEnvironment("Development")
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()

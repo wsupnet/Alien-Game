@@ -1,1 +1,11 @@
-﻿
+﻿@model GameWeb.Models.CharactersViewModel
+
+@using (Html.BeginForm("BeginGame","Home",FormMethod.Post)){
+    <div style="margin:2em;">
+        <h1>Enter your name</h1>
+        @Html.TextBoxFor(model => model.hero.heroName, new { @class = "form-control" })
+
+        <button type="submit">Begin Game</button>
+        <br/>
+    </div>
+}

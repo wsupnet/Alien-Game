@@ -33,5 +33,16 @@ namespace GameWeb.Models
             set;
         }
 
+        public string alienDraw
+        {
+            get; 
+            set;
+        }
+        public string alienStory 
+        {
+            get;
+            set;
+        }
+
     }
 }

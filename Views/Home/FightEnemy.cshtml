@@ -1,24 +1,14 @@
 @model GameWeb.Models.CharactersViewModel
 
 
-<h1>@Model.gameStatus</h1>
+<h2>@Model.gameStatus</h2>
 
-<ul>
-    <li>
-        @Model.alien.alienName
-    </li>
-    <li>
-        @Model.alien.healthPoints
-    </li> 
-    <li>
-        @Model.alien.message
-    </li>   
-    <li>
-        @Model.alien.healthPoints
-    </li>  
-    <li>
-        @Model.selectedWeapon
-    </li>
+<p>You were killed by @Model.alien.alienName</p>
+<p>Please insert 50 cents to play again</p>
 
+@using(Html.BeginForm("Characters","Home", FormMethod.Post)){
 
-<ul>
+@Html.TextBoxFor(model => model.alien.alienName, new { @class = "form-control hide" })
+
+    <button type="Submit" value="Save">Retry</button>
+}

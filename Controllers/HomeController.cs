@@ -15,19 +15,31 @@ namespace GameWeb.Controllers
 
         public IActionResult Index()
         {
+
+            CharactersViewModel model = new CharactersViewModel();
+            model.hero = new HeroModel();
+
             return View();
         }
 
-        public IActionResult Characters(int enemy)
+        [HttpPost]
+        public IActionResult BeginGame(CharactersViewModel cmodel)
+        {
+
+            return RedirectToAction("Characters", new { enemy = 1, heroName = cmodel.hero.heroName });
+        }
+
+        public IActionResult Characters(int enemy, string heroName)
         {
 
             //Calls the method that populates our model
-            ChangeEnemy(enemy);
+            ChangeEnemy(enemy, heroName);
 
             return View(model);
         }
 
-        private CharactersViewModel ChangeEnemy(int enemy)
+
+        private CharactersViewModel ChangeEnemy(int enemy, string heroName)
         {
 
             if (enemy <= 0)
@@ -35,32 +47,40 @@ namespace GameWeb.Controllers
 
             model.alien = new AlienModel();
             model.weapon = new WeaponModel();
+            model.hero = new HeroModel();
+
+            model.hero.heroName = heroName;
 
             switch (enemy)
             {
                 case 1:
-                    model.alien.alienName = "Patrick";
-                    model.alien.strenght = new string[1] { "Freeze (make harder)" };
-                    model.alien.weakness = new string[2] { "Torch (it)", "Candle (burn with prayers" };
+                    model.alien.alienName = "Slimey";
+                    model.alien.strenght = new string[1] { "Ice Wand" };
+                    model.alien.weakness = new string[2] { "Torch", "Hammer" };
                     model.alien.healthPoints = 1000;
-                    model.alien.message = "You killed patrick";
-                    model.weapon.weapons = new string[3, 2] { { "Torch (it)", "1000" }, { "Freeze (make harder)", "100" }, { "Candle (burn with prayers)", "500" } };
+                    model.alien.message = "You killed Slimey";
+                    model.alien.alienStory = "One day you are at your desk working on some code.  You decide to take a break to get a quick snack. As you walk into the kitchen the light go out! Then you hear a slimey sound coming from the refrigerator...";
+                    model.weapon.weapons = new string[3, 2] { { "Torch", "1000" }, { "Ice Wand", "100" }, { "Hammer", "500" } };
+                    model.drawAlien = "https://upload.wikimedia.org/wikipedia/en/1/13/Slime_%28Dragon_Quest%29.jpg";
                     break;
                 case 2:
-                    model.alien.alienName = "Spongebob";
-                    model.alien.strenght = new string[1] { "Splash It!" };
-                    model.alien.weakness = new string[2] { "Torch (it)", "Candle (burn with prayers" };
+                    model.alien.alienName = "Anna";
+                    model.alien.strenght = new string[1] { "Whip Cream (on it)" };
+                    model.alien.weakness = new string[2] { "Spoon (her)", "Fork (it)" };
                     model.alien.healthPoints = 1000;
-                    model.alien.message = "You killed Spongebob";
-                    model.weapon.weapons = new string[3, 2] { { "Torch (it)", "1000" }, { "Splash It!", "100" }, { "Candle (burn with prayers)", "500" } };
+                    model.alien.message = "You killed Anna";
+                    model.alien.alienStory = "After you took care of the slime, you need something sweet to bring your blood sugar up. You open the freezer and a mutated banana split flies out!";
+                    model.weapon.weapons = new string[3, 2] { { "Spoon (her)", "1000" }, { "Whip Cream (on it)", "100" }, { "Fork (it)", "500" } };
+                    model.drawAlien = "https://cdn.weasyl.com/static/media/31/35/08/313508507aaf7f5d571b3995a4e9ba55113ae214b9814a76ad91ce0b83739e68.png";
                     break;
                 case 3:
-                    model.alien.alienName = "Gary";
-                    model.alien.strenght = new string[1] { "Feed It!" };
-                    model.alien.weakness = new string[2] { "Torch (it)", "Candle (burn with prayers" };
+                    model.alien.alienName = "Gaga";
+                    model.alien.strenght = new string[1] { "Vodka (martini)" };
+                    model.alien.weakness = new string[2] { "Toothpick (poker face)", "Mouth (smash)" };
                     model.alien.healthPoints = 1000;
-                    model.alien.message = "You killed Gary";
-                    model.weapon.weapons = new string[3, 2] { { "Torch (it)", "1000" }, { "Feed It!", "100" }, { "Candle (burn with prayers)", "500" } };
+                    model.alien.message = "You killed Gaga";
+                    model.weapon.weapons = new string[3, 2] { { "Toothpick (poker face)", "1000" }, { "Vodka (martini)", "100" }, { "Mouth (smash)", "500" } };
+                    model.drawAlien = "https://vignette4.wikia.nocookie.net/finalfantasy/images/2/2e/Ffcc-mlaad_monster_ahriman.png/revision/latest?cb=20091012033316";
                     break;
 
                 default:
@@ -86,13 +106,13 @@ namespace GameWeb.Controllers
                 model.gameStatus = "You are a hero!";
                 switch (model.alien.alienName)
                 {
-                    case "Patrick":
+                    case "Slimey":
                         enemy = 2;
                         break;
-                    case "Spongebob":
+                    case "Anna":
                         enemy = 3;
                         break;
-                    case "Gary":
+                    case "Gaga":
                         enemy = 1;
                         break;
                     default:
@@ -103,7 +123,7 @@ namespace GameWeb.Controllers
             }
             else
             {
-                model.gameStatus = "You have died!";
+                model.gameStatus = "You have died! Game over!";
             }
 
             return View(model);

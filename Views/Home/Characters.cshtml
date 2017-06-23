@@ -3,20 +3,29 @@
 
 @using(Html.BeginForm("FightEnemy","Home", FormMethod.Post)){
 
+<br/>
 
-    @Html.TextBoxFor(model => model.alien.alienName, new { @class = "form-control" })  
-    @Html.TextBoxFor(model => model.alien.healthPoints, new { @class = "form-control" }) 
-    @Html.TextBoxFor(model => model.alien.message, new { @class = "form-control" })  
-    @Html.TextBoxFor(model => model.alien.strenght[0], new { @class = "form-control" }) 
-    @Html.TextBoxFor(model => model.alien.weakness[1], new { @class = "form-control" })  
+<h4>@Model.alien.alienStory</h4>
 
-    <div style="padding-top:3em;">
+<br/>
+
+<br/>
+
+<img src="@Model.drawAlien" />
+
+@Html.TextBoxFor(model => model.alien.alienName, new { @class = "form-control hide" })
+
+    <p>A wild @Model.alien.alienName has appeared!</p>
+
+<h4>Choose a weapon to survive!</h4>
+
     <select class="form-control" id="selectedWeapon" name="selectedWeapon">
     @for(var i = 0; i < 3; i++){
         <option value=@Model.weapon.weapons[i,1]>@Model.weapon.weapons[i,0]</option>
     }
     </select>
-    </div>
+
+<br/>
 
     <button type="Submit" value="Save">Submit</button>
 }
